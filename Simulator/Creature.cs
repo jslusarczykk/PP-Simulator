@@ -16,6 +16,7 @@ namespace Simulator
         {
             Name = name;
             Level = level;
+
         }
 
         public Creature() { }

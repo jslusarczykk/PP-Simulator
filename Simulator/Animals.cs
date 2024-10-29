@@ -13,3 +13,4 @@ namespace Simulator
         public string Info => $"{Description} <{Size}>";
     }
 }
+
