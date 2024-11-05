@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,25 +22,18 @@ namespace Simulator
                 }
                 else
                 {
-
-                    value = value.Trim();
-                    if (value.Length > 15)
-                    {
-                        value = value.Substring(0, 15).TrimEnd();
-                    }
-
-
-                    if (value.Length < 3)
-                    {
-                        value = value.PadRight(3, '#');
-                    }
-
+                    value = Validator.Shortener(value, 3, 15, '#');
                     description = char.ToUpper(value[0]) + value.Substring(1);
                 }
             }
         }
         public uint Size { get; set; } = 3;
-        public string Info => $"{Description} <{Size}>";
+        public virtual string Info => $"{Description} <{Size}>";
+
+        public override string ToString()
+        {
+            return $"{GetType().Name.ToUpper()}: {Info}";
+        }
 
     }
 

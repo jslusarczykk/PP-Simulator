@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simulator
 {
-    internal class Creature
+    internal abstract class Creature
     {
         private string name = "Unknown";
         public string Name
@@ -20,19 +20,7 @@ namespace Simulator
                 }
                 else
                 {
-                 
-                    value = value.Trim();
-                    if (value.Length > 25)
-                    {
-                        value = value.Substring(0, 25).TrimEnd();
-                    }
-
-                    
-                    if (value.Length < 3)
-                    {
-                        value = value.PadRight(3, '#');
-                    }
-
+                    value = Validator.Shortener(value, 3, 25, '#');
                     name = char.ToUpper(value[0]) + value.Substring(1);
                 }
             }
@@ -42,12 +30,9 @@ namespace Simulator
         public int Level
         {
             get => level;
-            init => level = Math.Clamp(value, 1, 10); 
+            init => level = Validator.Limiter(value, 1, 10);
         }
 
-        public string Info => $"{Name} [{Level}]";
-
-        
         public Creature(string name = "Unknown", int level = 1)
         {
             Name = name;
@@ -56,9 +41,12 @@ namespace Simulator
 
         public Creature() { }
 
-       
-        public void SayHi() => Console.WriteLine($"Hi, I'm {Name}, my level is {Level}.");
 
+        public abstract void SayHi();
+
+        public abstract int Power { get; }
+
+        public abstract string Info { get; }
 
         public void Upgrade()
         {
@@ -84,8 +72,10 @@ namespace Simulator
             Direction[] dirs = DirectionParser.Parse(input);
             Go(dirs);
         }
+
+        public override string ToString()
+        {
+            return $"{GetType().Name.ToUpper()}: {Info}";
+        }
     }
-
-
-
 }
