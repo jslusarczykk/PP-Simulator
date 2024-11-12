@@ -1,66 +1,68 @@
-﻿namespace Simulator;
-using static System.Diagnostics.Stopwatch;
+﻿using System;
+using System.Drawing;
 
-
-internal class Program
+namespace Simulator
 {
-    static void Lab4a()
+    internal class Program
     {
-        Console.WriteLine("HUNT TEST\n");
-        var o = new Orc() { Name = "Gorbag", Rage = 7 };
-        o.SayHi();
-        for (int i = 0; i < 10; i++)
+        public static void Lab5a()
         {
-            o.Hunt();
-            o.SayHi();
+            Console.WriteLine("Testowanie tworzenia prostokątów:");
+
+            try
+            {
+                Rectangle rect1 = new Rectangle(10, 5, 5, 10);
+                Console.WriteLine($"Rect1: {rect1}");
+
+                Point p1 = new Point(20, 25);
+                Point p2 = new Point(15, 30);
+                Rectangle rect2 = new Rectangle(p2, p1);
+                Console.WriteLine($"Rect2: {rect2}");
+
+                Rectangle rect3 = new Rectangle(10, 10, 10, 20);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Wyjątek: {ex.Message}");
+            }
+
+            Rectangle rect4 = new Rectangle(0, 0, 10, 10);
+            Point insidePoint = new Point(5, 5);
+            Point outsidePoint = new Point(15, 5);
+
+            Console.WriteLine($"Czy prostokąt zawiera punkt (5, 5): {rect4.Contains(insidePoint)}");
+            Console.WriteLine($"Czy prostokąt zawiera punkt (15, 5): {rect4.Contains(outsidePoint)}");
+
+            Point start = new Point(10, 25);
+            Console.WriteLine($"Punkt startowy: {start}");
         }
 
-        Console.WriteLine("\nSING TEST\n");
-        var e = new Elf("Legolas", agility: 2);
-        e.SayHi();
-        for (int i = 0; i < 10; i++)
+        static void Main(string[] args)
         {
-            e.Sing();
-            e.SayHi();
-        }
-
-        Console.WriteLine("\nPOWER TEST\n");
-        Creature[] creatures = {
-        o,
-        e,
-        new Orc("Morgash", 3, 8),
-        new Elf("Elandor", 5, 3)
-    };
-        foreach (Creature creature in creatures)
-        {
-            Console.WriteLine($"{creature.Name,-15}: {creature.Power}");
+            Console.WriteLine("Starting Simulator!\n");
+            Lab5a();
         }
     }
 
-    static void Lab4b()
+    public static class PointExtensions
     {
-        object[] myObjects = {
-        new Animals() { Description = "dogs"},
-        new Birds { Description = "  eagles ", Size = 10 },
-        new Elf("e", 15, -3),
-        new Orc("morgash", 6, 4)
-    };
-        Console.WriteLine("\nMy objects:");
-        foreach (var o in myObjects) Console.WriteLine(o);
-        /*
-            My objects:
-            ANIMALS: Dogs <3>
-            BIRDS: Eagles (fly+) <10>
-            ELF: E## [10][0]
-            ORC: Morgash [6][4]
-        */
-    }
-
-    static void Main(string[] args) //porpawic to
-    {
-        Lab4a();
-        Lab4b();
+        // Metoda Next obsługująca cztery kierunki
+        public static Point Next(this Point point, Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Up:
+                    return new Point(point.X, point.Y - 1);
+                case Direction.Down:
+                    return new Point(point.X, point.Y + 1);
+                case Direction.Left:
+                    return new Point(point.X - 1, point.Y);
+                case Direction.Right:
+                    return new Point(point.X + 1, point.Y);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+            }
+        }
     }
 
 }
-
