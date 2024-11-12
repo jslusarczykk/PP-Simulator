@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simulator.Maps;
+using System;
 using System.Drawing;
 
 namespace Simulator
@@ -37,10 +38,40 @@ namespace Simulator
             Console.WriteLine($"Punkt startowy: {start}");
         }
 
+        public static void Lab5b()
+        {
+            try
+            {
+                // Tworzenie mapy o rozmiarze 10
+                SmallSquareMap map = new SmallSquareMap(10);
+                Console.WriteLine($"Mapa stworzona o rozmiarze: {map.Size}");
+
+                // Punkt początkowy
+                Point startPoint = new Point(5, 5);
+                Console.WriteLine($"Punkt początkowy: ({startPoint.X}, {startPoint.Y})");
+
+                // Testowanie metody Exist
+                Console.WriteLine($"Czy punkt ({startPoint.X}, {startPoint.Y}) istnieje na mapie? {map.Exist(startPoint)}");
+
+                // Testowanie metody Next
+                Point nextPoint = map.Next(startPoint, Direction.Up);
+                Console.WriteLine($"Następny punkt w górę: ({nextPoint.X}, {nextPoint.Y})");
+
+                // Testowanie metody NextDiagonal
+                Point diagonalPoint = map.NextDiagonal(startPoint, Direction.UpRight);
+                Console.WriteLine($"Następny punkt po skosie w prawo: ({diagonalPoint.X}, {diagonalPoint.Y})");
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine($"Błąd: {ex.Message}");
+            }
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Starting Simulator!\n");
             Lab5a();
+            Lab5b();
         }
     }
 
