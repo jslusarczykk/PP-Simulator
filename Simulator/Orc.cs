@@ -52,7 +52,7 @@ namespace Simulator
             }
         }
 
-        public override void SayHi()
+        public override void string Greeting()
         {
             Console.WriteLine($"Hi, I'm {Name} the Orc, my level is {Level} and my rage is {Rage}");
         }

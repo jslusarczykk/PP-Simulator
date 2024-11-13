@@ -37,7 +37,7 @@ namespace Simulator
 
         public void Sing()
         {
-            Console.WriteLine($"{Name} is singing.");
+            
             singCounter++;
             if (singCounter == SINGS_FOR_UPGRADE)
             {
@@ -49,7 +49,7 @@ namespace Simulator
             }
         }
 
-        public override void SayHi()
+        public override string Greeting()
         {
             Console.WriteLine($"Hi, I'm {Name} the Elf, my level is {Level} and my agility is {Agility}");
         }

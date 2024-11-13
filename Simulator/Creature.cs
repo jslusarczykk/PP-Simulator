@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simulator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,7 @@ namespace Simulator
         public Creature() { }
 
 
-        public abstract void SayHi();
+        public abstract string Greeting();
 
         public abstract int Power { get; }
 
@@ -56,19 +57,14 @@ namespace Simulator
             }
 
         }
-        public void Go(Direction dir)
+        public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
+
+        public string[] Go(Direction[] directions) 
         {
-            Console.WriteLine($"{name} goes {dir.ToString().ToLower()}");
+            var result = new
         }
-        public void Go(Direction[] dirs)
-        {
-            foreach (Direction dir in dirs)
-            {
-                Go(dir);
-            }
-        }
-        public void Go(string input)
-        {
+        public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
+{
             Direction[] dirs = DirectionParser.Parse(input);
             Go(dirs);
         }
