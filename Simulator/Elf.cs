@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simulator
 {
-    internal class Elf : Creature
+    public class Elf : Creature
     {
         private int agility;
         private const int MIN_AGILITY = 0;
@@ -51,7 +51,7 @@ namespace Simulator
 
         public override string Greeting()
         {
-            Console.WriteLine($"Hi, I'm {Name} the Elf, my level is {Level} and my agility is {Agility}");
+            return($"Hi, I'm {Name} the Elf, my level is {Level} and my agility is {Agility}");
         }
 
         public override int Power => Level * 8 + Agility * 2;

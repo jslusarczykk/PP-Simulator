@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Simulator
 {
-    internal abstract class Creature
+    public abstract class Creature
     {
         private string name = "Unknown";
         public string Name
@@ -57,16 +57,16 @@ namespace Simulator
             }
 
         }
-        public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
+        public string Go(Direction direction) => direction.ToString().ToLower();
 
         public string[] Go(Direction[] directions) 
         {
-            var result = new
-        }
-        public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
-{
-            Direction[] dirs = DirectionParser.Parse(input);
-            Go(dirs);
+            var result = new string[directions.Length];
+            for(int i = 0; i < directions.Length; i++)
+            {
+                result[i] = Go(directions[i]);
+            }
+            return result;
         }
 
         public override string ToString()

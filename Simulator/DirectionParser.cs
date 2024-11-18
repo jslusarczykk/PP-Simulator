@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simulator
 {
-    internal static class DirectionParser
+    public static class DirectionParser
     {
         public static Direction[] Parse(string input)
         {

@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace Simulator
 {
-    internal class Orc : Creature
+    public class Orc : Creature
     {
         private int rage;
         private const int MIN_RAGE = 0;
@@ -52,9 +52,9 @@ namespace Simulator
             }
         }
 
-        public override void string Greeting()
+        public override string Greeting()
         {
-            Console.WriteLine($"Hi, I'm {Name} the Orc, my level is {Level} and my rage is {Rage}");
+            return($"Hi, I'm {Name} the Orc, my level is {Level} and my rage is {Rage}");
         }
 
         public override int Power => Level * 7 + Rage * 3;
