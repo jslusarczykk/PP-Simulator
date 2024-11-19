@@ -54,10 +54,10 @@ namespace Simulator.Maps
             switch (d)
             {
                 case Direction.Up:
-                    nextPoint = new Point(p.X, p.Y - 1);
+                    nextPoint = new Point(p.X, p.Y + 1);
                     break;
                 case Direction.Down:
-                    nextPoint = new Point(p.X, p.Y + 1);
+                    nextPoint = new Point(p.X, p.Y - 1);
                     break;
                 case Direction.Left:
                     nextPoint = new Point(p.X - 1, p.Y);
