@@ -9,13 +9,16 @@ namespace Simulator.Maps
     {
         public int Size { get; }
 
-        public SmallTorusMap(int size)
+        public SmallMap(int sizeX,int SizeY) : base(sizeX,SizeY)
         {
-            if (size < 5 || size > 20)
+            if (sizeX> 20)
             {
-                throw new ArgumentOutOfRangeException(nameof(size), "Size must be in range [5, 20].");
+                throw new ArgumentOutOfRangeException(nameof(sizeX), "Size must be in range [5, 20].");
             }
-            Size = size;
+            if (SizeY > 20)
+            {
+                throw new ArgumentOutOfRangeException(nameof(SizeY), "cos");
+            }
         }
 
         public override bool Exist(Point point)

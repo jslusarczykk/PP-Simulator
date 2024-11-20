@@ -7,46 +7,29 @@ namespace Simulator.Maps
     /// <summary>
     /// Represents a small square map with sizes ranging from 5 to 20 points.
     /// </summary>
-    public class SmallSquareMap : Map
+    public abstract class SmallSquareMap : Map
     {
+       private readonly Rectangle _Map;
+        protected Map(int sizeX, int sizeY)
+        {
+            if (sizeX < 5)
+            {
+                throw new ArgumentOutOfRangeException(nameof(sizeX), "Too narrow");
+            }
+            if (sizeY < 5)
+            {
+                throw new ArgumentOutOfRangeException(nameof(sizeY), "Too short");
+            }
+            SizeX = sizeX;
+            SizeY = sizeY;
+            _Map = new Rectangle(0, 0, SizeX - 1, SizeY - 1);
+        }
+
+        public int SizeX { get; }
+        public int SizeY { get; }
         private int size;
 
-        /// <summary>
-        /// Gets the size of the map.
-        /// </summary>
-        public int Size => size;
-
-        /// <summary>
-        /// Initializes a new instance of the SmallSquareMap class with the specified size.
-        /// </summary>
-        /// <param name="size">Size of the square map. Must be between 5 and 20 inclusive.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when the size is outside the allowed range of 5 to 20.</exception>
-        public SmallSquareMap(int size)
-        {
-            if (size < 5 || size > 20)
-            {
-                throw new ArgumentOutOfRangeException(nameof(size), "Size must be between 5 and 20.");
-            }
-
-            this.size = size;
-        }
-
-        /// <summary>
-        /// Checks if the given point is within the bounds of the map.
-        /// </summary>
-        /// <param name="p">The point to check.</param>
-        /// <returns>True if the point is within the map; otherwise, false.</returns>
-        public override bool Exist(Point p)
-        {
-            return p.X >= 0 && p.X < size && p.Y >= 0 && p.Y < size;
-        }
-
-        /// <summary>
-        /// Returns the next position to the point in the given direction.
-        /// </summary>
-        /// <param name="p">Starting point.</param>
-        /// <param name="d">Direction.</param>
-        /// <returns>The next point or the same point if the move would go out of bounds.</returns>
+       
         public override Point Next(Point p, Direction d)
         {
             Point nextPoint = p;

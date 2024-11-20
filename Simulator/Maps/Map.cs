@@ -7,6 +7,21 @@ using System.Drawing;
 /// </summary>
 public abstract class Map
 {
+    protected Map(int sizeX, int sizeY)
+    {
+        if (sizeX < 5) {
+            throw new ArgumentOutOfRangeException(nameof(sizeX), "Too narrow");
+        }
+        if(sizeY < 5) {
+            throw new ArgumentOutOfRangeException(nameof(sizeY), "Too short");
+        }
+        SizeX = sizeX;
+        SizeY = sizeY;
+        //_map = new Rectangle
+    }
+
+    public int SizeX { get;  }
+    public int SizeY { get; }
     /// <summary>
     /// Check if give point belongs to the map.
     /// </summary>
