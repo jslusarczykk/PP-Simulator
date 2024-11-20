@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-
 using System;
 using Simulator;
 
@@ -9,15 +8,16 @@ namespace Simulator.Maps
     {
         public int Size { get; }
 
-        public SmallMap(int sizeX,int SizeY) : base(sizeX,SizeY)
+        // Corrected constructor name to match the class name
+        public SmallTorusMap(int sizeX, int sizeY) : base(sizeX, sizeY)
         {
-            if (sizeX> 20)
+            if (sizeX > 20)
             {
                 throw new ArgumentOutOfRangeException(nameof(sizeX), "Size must be in range [5, 20].");
             }
-            if (SizeY > 20)
+            if (sizeY > 20)
             {
-                throw new ArgumentOutOfRangeException(nameof(SizeY), "cos");
+                throw new ArgumentOutOfRangeException(nameof(sizeY), "Size must be in range [5, 20].");
             }
         }
 

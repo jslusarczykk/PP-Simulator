@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Drawing;
 
 namespace Simulator.Maps
@@ -9,8 +8,10 @@ namespace Simulator.Maps
     /// </summary>
     public abstract class SmallSquareMap : Map
     {
-       private readonly Rectangle _Map;
-        protected Map(int sizeX, int sizeY)
+        private readonly Rectangle _Map;
+
+        // Constructor for SmallSquareMap that calls the base Map constructor
+        protected SmallSquareMap(int sizeX, int sizeY) : base(sizeX, sizeY)
         {
             if (sizeX < 5)
             {
@@ -27,9 +28,7 @@ namespace Simulator.Maps
 
         public int SizeX { get; }
         public int SizeY { get; }
-        private int size;
 
-       
         public override Point Next(Point p, Direction d)
         {
             Point nextPoint = p;
