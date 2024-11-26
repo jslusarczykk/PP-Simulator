@@ -26,8 +26,8 @@ namespace Simulator.Maps
             _Map = new Rectangle(0, 0, SizeX - 1, SizeY - 1);
         }
 
-        public int SizeX { get; }
-        public int SizeY { get; }
+        public new int SizeX { get; }
+        public new int SizeY { get; }
 
         public override Point Next(Point p, Direction d)
         {
