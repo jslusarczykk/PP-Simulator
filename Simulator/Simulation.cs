@@ -100,23 +100,31 @@ namespace Simulator
             if (Finished)
                 throw new InvalidOperationException("Simulation is already finished.");
 
-            // Get the current creature and move
+            // Pobierz aktualnego stworzenia i ruch
             var creature = CurrentCreature;
             var move = CurrentMoveName;
 
-            // Parse the direction
-            if (!Enum.TryParse(typeof(Direction), move, true, out var directionObj))
-                throw new ArgumentException($"Invalid move: {move} is not a valid direction.");
-            var direction = (Direction)directionObj;
+            // Parsowanie kierunku przy użyciu DirectionParser
+            Direction direction;
+            try
+            {
+                direction = DirectionParser.Parse(move); // Użycie klasy DirectionParser
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message); // Wypisz informację o błędnym ruchu
+                currentTurn++;
+                return; // Pominięcie tej tury
+            }
 
-            // Get the current position of the creature
+            // Pobierz aktualną pozycję stworzenia
             var creatureIndex = currentTurn % Creatures.Count;
             var currentPosition = Positions[creatureIndex];
 
-            // Get the next position on the map
+            // Oblicz następną pozycję na mapie
             var nextPosition = Map.Next(currentPosition, direction);
 
-            // Update the position if the next position is valid
+            // Zaktualizuj pozycję, jeśli jest poprawna
             if (Map.Exist(nextPosition))
             {
                 Positions[creatureIndex] = nextPosition;
@@ -127,15 +135,16 @@ namespace Simulator
                 Console.WriteLine($"Creature {creature.Name} attempted to move out of bounds from {currentPosition}.");
             }
 
-            // Update the turn
+            // Zaktualizuj turę
             currentTurn++;
 
-            // Check if all moves are completed
+            // Sprawdź, czy wszystkie ruchy zostały wykonane
             if (currentTurn >= Moves.Length)
             {
                 Finished = true;
                 Console.WriteLine("Simulation completed.");
             }
         }
+
     }
 }

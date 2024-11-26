@@ -12,7 +12,7 @@ public class SmallTorusMapTests
         // Arrange
         int size = 10;
         // Act
-        var map = new SmallTorusMap(size);
+        var map = new SmallTorusMap(sizeX,sizeY);
         // Assert
         Assert.Equal(size, map.Size);
     }

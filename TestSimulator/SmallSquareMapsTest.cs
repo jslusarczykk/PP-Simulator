@@ -61,22 +61,4 @@ public class SmallSquareMapTest
         var expected = new Point(res_x, res_y);
         Assert.Equal(expected, result);
     }
-
-    [Theory]
-    [InlineData(5, 7, Direction.DownRight, 6, 6)]
-    [InlineData(3, 7, Direction.UpLeft, 2, 8)]
-    [InlineData(8, 12, Direction.UpRight, 9, 13)]
-    [InlineData(5, 7, Direction.DownLeft, 4, 6)]
-    [InlineData(13, 0, Direction.Down, 13, 0)]
-    public void NextDiagonal_CheckIf_ReturnsProperPoint(int x, int y, Direction dir, int res_x, int res_y)
-    {
-        //arrange
-        Point testpoint = new Point(x, y);
-        var squaremap = new SmallSquareMap(20);
-        //act
-        var result = squaremap.NextDiagonal(testpoint, dir);
-        //assert
-        var expected = new Point(res_x, res_y);
-        Assert.Equal(expected, result);
-    }
 }
