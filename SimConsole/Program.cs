@@ -10,11 +10,31 @@ namespace SimConsole
     {
         static void Main(string[] args)
         {
-            // Inicjalizacja danych symulacji
-            SmallSquareMap map = new(5); // Mapa o rozmiarze 5x5
-            List<Creature> creatures = new() { new Orc("Gorbag"), new Elf("Elandor") }; // Stwory: Orc i Elf
-            List<Point> points = new() { new Point(2, 2), new Point(3, 1) }; // Początkowe pozycje stworów
-            string moves = "dlrludl"; // Ruchy: Down, Left, Right, Left, Up, Down, Left
+            // Inicjalizacja mapy odbijającej o rozmiarze 8x6
+            BigBounceMap map = new(8, 6); // Mapa o rozmiarze 8x6
+
+            // Stwory: Ork, Elf, Królik, Orzeł, Struś
+            List<Creature> creatures = new()
+            {
+                new Orc("Gorbag", 3),          // Ork
+                new Elf("Elandor", 4),         // Elf
+                new Rabbit("Bunny", 2),        // Królik
+                new Eagle("Eagle", 5),         // Orzeł
+                new Ostrich("Ostrich", 3)      // Struś
+            };
+
+            // Początkowe pozycje stworów
+            List<Point> points = new()
+            {
+                new Point(2, 2),  // Ork
+                new Point(3, 1),  // Elf
+                new Point(4, 4),  // Królik
+                new Point(1, 0),  // Orzeł
+                new Point(7, 2)   // Struś
+            };
+
+            // Ruchy: Down, Left, Right, Left, Up, Down, Left
+            string moves = "dddddddddddddddlllllllllllllllllldddddddd";
 
             // Utworzenie symulacji
             Simulation simulation = new(map, creatures, points, moves);

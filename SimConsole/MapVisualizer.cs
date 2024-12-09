@@ -38,7 +38,27 @@ namespace Simulator
                     }
                     else if (creaturesAtPoint.Count == 1)
                     {
-                        Console.Write(creaturesAtPoint[0] is Orc ? "O" : "E"); // Orc → O, Elf → E
+                        // Reprezentacja stworków
+                        if (creaturesAtPoint[0] is Orc)
+                        {
+                            Console.Write("O"); // Orc → O
+                        }
+                        else if (creaturesAtPoint[0] is Elf)
+                        {
+                            Console.Write("E"); // Elf → E
+                        }
+                        else if (creaturesAtPoint[0] is Eagle)
+                        {
+                            Console.Write("A"); // Eagle → A
+                        }
+                        else if (creaturesAtPoint[0] is Rabbit)
+                        {
+                            Console.Write("R"); // Rabbit → R
+                        }
+                        else if (creaturesAtPoint[0] is Ostrich)
+                        {
+                            Console.Write("S"); // Ostrich → S
+                        }
                     }
                     else
                     {
@@ -48,6 +68,7 @@ namespace Simulator
                 Console.WriteLine();
             }
         }
+
 
         private List<Creature> GetCreaturesAtPoint(Point point)
         {
