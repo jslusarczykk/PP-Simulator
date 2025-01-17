@@ -16,7 +16,7 @@ namespace Simulator
             get => description;
             init
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value)) /* and */
                 {
                     description = "Unknown";
                 }
@@ -27,7 +27,7 @@ namespace Simulator
                 }
             }
         }
-        public uint Size { get; set; } = 3;
+        public uint Size { get; set; } = 3; 
         public virtual string Info => $"{Description} <{Size}>";
 
         public override string ToString()
